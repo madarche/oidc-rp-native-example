@@ -1,0 +1,44 @@
+{
+  "name": "oidc-rp-native-web",
+  "version": "1.0.0",
+  "description": "OpenID Connect Relying Party (RP) native demo",
+  "author": "Marc-Aurèle DARCHE",
+  "license": "MIT",
+  "engines": {
+    "node": ">=12.18"
+  },
+  "scripts": {
+    "start": "node src/start.js",
+    "start:watch": "nodemon",
+    "test": "npm run test:unit && npm run test:integration",
+    "posttest": "npm run lint",
+    "pretest:ci": "npm run lint",
+    "test:ci": "npm run test:unit && npm run test:integration",
+    "test:unit": "echo 'No unit tests for now'",
+    "test:integration": "echo 'No integration tests for now'",
+    "lint": "eslint --ignore-pattern='!.*.js' .",
+    "lint:fix": "eslint --fix --ignore-pattern='!.*.js' ."
+  },
+  "dependencies": {
+    "body-parser": "1.19.0",
+    "bunyan": "1.8.12",
+    "convict": "6.0.0",
+    "convict-format-with-validator": "6.0.0",
+    "cookie-parser": "1.4.5",
+    "cookie-session": "1.4.0",
+    "express": "4.17.1",
+    "helmet": "3.22.0",
+    "morgan": "1.10.0",
+    "nunjucks": "3.2.1",
+    "on-finished": "2.3.0",
+    "openid-client": "3.15.9",
+    "toml": "3.0.0",
+    "tracer": "1.1.1",
+    "yargs-parser": "18.1.3"
+  },
+  "devDependencies": {
+    "eslint": "7.4.0",
+    "eslint-config-usecases": "https://github.com/madarche/eslint-config-usecases.git#v3.0.0",
+    "nodemon": "2.0.4"
+  }
+}

@@ -1,0 +1,9 @@
+.DS_Store
+.idea
+*.log
+
+config.toml
+.nvmrc
+node_modules
+npm-debug.log
+

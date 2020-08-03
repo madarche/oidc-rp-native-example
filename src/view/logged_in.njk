@@ -1,0 +1,18 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+
+<div style="background: #59f5ff">
+  <h2>Authentication success! ☺</h2>
+
+  <p>Here are the information retrieved from the OP:
+  </p>
+  <pre>{{user_info|dump(2)}}
+  </pre>
+</div>
+
+<p>
+  <a href="/">To homepage</a>
+</p>
+
+{% endblock %}
