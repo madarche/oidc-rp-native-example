@@ -139,7 +139,7 @@ class WrappedClient {
     }
 
     async requestResource(resource_url) {
-        const resp = await openid_client.requestResource(this.getTokenSet())
+        const resp = await openid_client.requestResource(resource_url, this.getTokenSet())
         return resp
     }
 
