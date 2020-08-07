@@ -1,7 +1,7 @@
 'use strict'
 
-const logger = require('../lib/logger')
 const config = require('../lib/config')
+const logger = require('../lib/logger')
 const oidc = require('../lib/oidc')
 
 const resources_url = config.get('resources.url')
