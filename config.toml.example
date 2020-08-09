@@ -19,9 +19,9 @@ level = "error"
 issuer_url = 'https://connect.local.test/'
 client_id = 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'
 # Native clients specifics: No client_secret
-scope = 'openid'
+scope = 'openid email profile offline_access'
 #scope = 'openid email'
-#scope = 'openid email profile'
+#scope = 'openid'
 
 [resources]
 # External resources to load from an OAuth2 Resource Server

@@ -90,6 +90,8 @@ class WrappedClient {
             // Native clients specifics: PKCE code_verifier and code_challenge
             code_challenge,
             code_challenge_method: 'S256',
+            // To obtain refresh token
+            prompt: 'consent',
         })
 
         return authorization_url
