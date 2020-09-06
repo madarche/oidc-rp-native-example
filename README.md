@@ -1,9 +1,9 @@
-oidc-rp-native-demo
-===================
+oidc-rp-native-example
+======================
 
-[![Build Status](https://travis-ci.org/madarche/oidc-rp-native-demo.svg?branch=master)](https://travis-ci.org/madarche/oidc-rp-native-demo)
+[![Build Status](https://travis-ci.org/madarche/oidc-rp-native-example.svg?branch=master)](https://travis-ci.org/madarche/oidc-rp-native-example)
 
-OpenID Connect Relying Party (RP) *native client* (like a mobile app) demo
+OpenID Connect Relying Party (RP) *native client* (like a mobile app) example
 
 :warning: Native clients specifics: While this project is a demo of a *native
 client* it is implemented as a web application. It's not an error. This is done
@@ -15,7 +15,7 @@ Usage
 -----
 
 It is assumed that this application will run as
-https://oidc-rp-native-demo.local.test/. One can change this URL with whatever
+https://oidc-rp-native-example.local.test/. One can change this URL with whatever
 other URL
 
 First, write the `config.tom` config file:
@@ -28,8 +28,8 @@ vim config.toml
 Next, register the RP in the OP with the following properties:
 
 * `client_id` : the same as the `client_id` set in the `config.toml`
-* `redirect_uris` : `https://oidc-rp-native-demo.local.test/logged_in`
-* `post_logout_redirect_uris` : `https://oidc-rp-native-demo.local.test/logged_out`
+* `redirect_uris` : `https://oidc-rp-native-example.local.test/logged_in`
+* `post_logout_redirect_uris` : `https://oidc-rp-native-example.local.test/logged_out`
 
 Native clients specifics: No client_secret
 
@@ -43,7 +43,7 @@ npm ci
 npm start
 ```
 
-Finally, visit the application at https://oidc-rp-native-demo.local.test/
+Finally, visit the application at https://oidc-rp-native-example.local.test/
 
 
 ### When the OP uses self-signed certificate

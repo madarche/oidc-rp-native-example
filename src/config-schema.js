@@ -5,7 +5,7 @@ module.exports = {
         base_url: {
             doc: 'Application base URL',
             format: 'url',
-            default: 'https://oidc-rp-native-demo.local.test'
+            default: 'https://oidc-rp-native-example.local.test'
         },
         secret: {
             doc: 'Secret used for session cookies and CSRF tokens',
@@ -55,7 +55,7 @@ module.exports = {
             doc: 'Name of this application cookie',
             format: '*',
             // Native clients specifics: No client_secret
-            default: 'app.oidc-rp-native-demo'
+            default: 'app.oidc-rp-native-example'
         }
     },
     oidc: {

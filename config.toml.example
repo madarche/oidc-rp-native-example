@@ -1,14 +1,14 @@
 
 [common]
-base_url = "https://oidc-rp-native-demo.local.test"
+base_url = "https://oidc-rp-native-example.local.test"
 secret = "CHANGE_ME"
 
 [log]
 level = "error"
 #level = "trace"
 # If not defined the logger outputs to the console (useful when developing or debugging)
-#file_path = "oidc-rp-native-demo.log"
-#file_path = "/tmp/oidc-rp-native-demo.log"
+#file_path = "oidc-rp-native-example.log"
+#file_path = "/tmp/oidc-rp-native-example.log"
 
 [server]
 #ip = "127.0.0.1"

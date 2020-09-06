@@ -1,7 +1,7 @@
 {
   "name": "oidc-rp-native-web",
   "version": "1.0.0",
-  "description": "OpenID Connect Relying Party (RP) native demo",
+  "description": "OpenID Connect Relying Party (RP) native example",
   "author": "Marc-Aurèle DARCHE",
   "license": "MIT",
   "engines": {
