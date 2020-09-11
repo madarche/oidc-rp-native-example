@@ -71,7 +71,7 @@ async function logOut(req, res, next) {
             return
         }
 
-        const end_session_url = client.buildEndSessionUrl(client, req.session)
+        const end_session_url = client.buildEndSessionUrl()
         res.redirect(end_session_url)
     } catch (err) {
         logger.error(err)
