@@ -27,7 +27,9 @@ It is assumed that this application will run as
 https://oidc-rp-native-example.local.test/. One can change this URL with whatever
 other URL.
 
-First, write the `config.tom` config file:
+First, write the `config.tom` config file.
+
+Optionally set the `resources.url` propriety with the URL of the OAuth2 Resource Server route.
 
 ```shellsession
 cp config.toml.example config.toml
