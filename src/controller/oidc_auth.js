@@ -32,10 +32,6 @@ async function loggedIn(req, res, next) {
         const access_token_verify = await client.introspect(token_set.access_token)
         logger.trace('access_token_verify:', access_token_verify)
 
-        // Is the id_token supposed to be verifiable???
-        // const id_token_verify = await client.introspect(token_set.id_token)
-        // logger.trace('id_token_verify:', id_token_verify)
-
         // Example of a failed verification
         const fake_token_verify = await client.introspect('fake_value')
         logger.trace('fake_token_verify:', fake_token_verify)
