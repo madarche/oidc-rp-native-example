@@ -14,7 +14,7 @@ const logger = require('./lib/logger')
 
 const app = module.exports = express()
 
-app.locals.app_title = 'Demo OIDC RP - client web'
+app.locals.app_title = 'Demo OIDC RP - client native'
 app.locals.app_icon_path = '/img/oidc-rp-native-example-icon-32.png'
 
 // Securing the application, especially on HTTP headers.
