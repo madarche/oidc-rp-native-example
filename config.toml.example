@@ -2,6 +2,7 @@
 [common]
 base_url = "https://oidc-rp-native-example.local.test"
 secret = "CHANGE_ME"
+#mask_sensitive_values = true
 
 [log]
 level = "error"

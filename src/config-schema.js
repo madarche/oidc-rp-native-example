@@ -11,7 +11,12 @@ module.exports = {
             doc: 'Secret used for session cookies and CSRF tokens',
             format: String,
             default: null
-        }
+        },
+        mask_sensitive_values: {
+            doc: 'If true sensitive values will be masked',
+            format: Boolean,
+            default: true,
+        },
     },
     resources: {
         url: {

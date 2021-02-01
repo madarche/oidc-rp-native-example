@@ -38,7 +38,7 @@
   },
   "devDependencies": {
     "eslint": "7.4.0",
-    "eslint-config-usecases": "https://github.com/madarche/eslint-config-usecases.git#v3.0.0",
+    "eslint-config-usecases": "https://github.com/madarche/eslint-config-usecases.git#v3.1.0",
     "nodemon": "2.0.4"
   }
 }

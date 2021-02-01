@@ -11,6 +11,7 @@ custom.setHttpOptionsDefaults({
     throwHttpErrors: true,
 })
 
+const mask_sensitive_values = config.get('common.mask_sensitive_values')
 const issuer_url = config.get('oidc.issuer_url')
 const client_id = config.get('oidc.client_id')
 // Native clients specifics: No client_secret
@@ -27,7 +28,7 @@ let openid_client
 function getConfigInfo() {
     return {
         issuer_url,
-        client_id,
+        ...!mask_sensitive_values && {client_id},
         // Native clients specifics: No client_secret
         scope,
         response_types,
