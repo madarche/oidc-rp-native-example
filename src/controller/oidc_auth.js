@@ -33,8 +33,8 @@ async function loggedIn(req, res, next) {
         logger.trace('access_token_verify:', access_token_verify)
 
         // Example of a failed verification
-        const fake_token_verify = await client.introspect('fake_value')
-        logger.trace('fake_token_verify:', fake_token_verify)
+        // const fake_token_verify = await client.introspect('fake_value')
+        // logger.trace('fake_token_verify:', fake_token_verify)
 
         const user_info = await client.userinfo()
         data.user_info = user_info
