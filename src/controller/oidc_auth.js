@@ -1,7 +1,6 @@
 'use strict'
 
-const {errors} = require('openid-client')
-const OPError = errors.OPError
+const {OPError} = require('openid-client').errors
 
 const logger = require('../lib/logger')
 const oidc = require('../lib/oidc')

@@ -1,5 +1,7 @@
 'use strict'
 
+const {OPError} = require('openid-client').errors
+
 const config = require('../lib/config')
 const logger = require('../lib/logger')
 const oidc = require('../lib/oidc')
@@ -17,37 +19,41 @@ async function renderPage(req, res, next) {
         const client = await oidc.getClient(req)
         const token_set = client.getTokenSet()
 
-        if (!token_set || token_set.expired()) {
-            // User NOT logged
-            data.logged_in = false
-        } else {
-            // User may be LOGGED, but their tokens may still be invalid
+        if (token_set && !token_set.expired()) {
             logger.debug(client.getTokenExpirationDetails())
 
-            const access_token_verify = await client.introspect(token_set.access_token)
-            logger.trace('access_token_verify:', access_token_verify)
-
-            // Example of a failed verification
-            // const fake_token_verify = await client.introspect('fake_value')
-            // logger.trace('fake_token_verify:', fake_token_verify)
-
-            const user_info = await client.userinfo()
-            data.user_info = user_info
-
+            // User may still be LOGGED, but their tokens may still be invalid
+            // from the OP (revoked, user logged-out from OP).
             try {
-                if (resources_url) {
-                    logger.trace('Requesting resources from Resource Server at:', resources_url)
-                    const resp = await client.requestResource(resources_url, token_set)
-                    logger.trace('Response from Resource Server:', resp.body.toString())
-                } else {
-                    logger.trace('No resources_url not defined, so not fetching')
-                }
-            } catch (err) {
-                logger.debug(err)
-            }
+                const access_token_verify = await client.introspect(token_set.access_token)
+                logger.trace('access_token_verify:', access_token_verify)
 
-            // User LOGGED if arriving to this point
-            data.logged_in = true
+                const user_info = await client.userinfo()
+                data.user_info = user_info
+
+                try {
+                    if (resources_url) {
+                        logger.trace('Requesting resources from Resource Server at:', resources_url)
+                        const resp = await client.requestResource(resources_url, token_set)
+                        logger.trace('Response from Resource Server:',
+                            resp.headers, resp.body.toString())
+                    } else {
+                        logger.trace('No resources_url not defined, so not fetching')
+                    }
+                } catch (err) {
+                    logger.debug(err)
+                }
+
+                // User LOGGED if arriving to this point
+                data.logged_in = true
+            } catch (err) {
+                if (err instanceof OPError && err.error == 'invalid_token') {
+                    logger.debug('invalid_token so destroying the application session')
+                    req.session = null
+                } else {
+                    throw err
+                }
+            }
         }
 
         res.render('root.njk', data)
