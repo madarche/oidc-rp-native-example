@@ -44,9 +44,8 @@ async function loggedIn(req, res, next) {
 
         res.render('logged_in.njk', data)
     } catch (err) {
-        if (err instanceof OPError &&
-            err.error && err.error == 'consent_required') {
-            res.status(403).send(err.error_description)
+        if (err instanceof OPError) {
+            res.send(err.error_description)
         } else {
             logger.error(err)
             res.sendStatus(500)
