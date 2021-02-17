@@ -17,10 +17,6 @@ async function logIn(req, res, next) {
 }
 
 async function loggedIn(req, res, next) {
-    const data = {
-        config_info_not_for_prod: oidc.getConfigInfo(),
-    }
-
     try {
         const client = await oidc.getClient(req)
         await client.callback()
@@ -35,14 +31,11 @@ async function loggedIn(req, res, next) {
         // const fake_token_verify = await client.introspect('fake_value')
         // logger.trace('fake_token_verify:', fake_token_verify)
 
-        const user_info = await client.userinfo()
-        data.user_info = user_info
-
         // TODO: Test requesting grants
         // const result = await client.grant({grant_type: TODO});
         // logger.trace('result:', result);
 
-        res.render('logged_in.njk', data)
+        res.redirect('/')
     } catch (err) {
         if (err instanceof OPError) {
             res.send(err.error_description)

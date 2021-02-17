@@ -8,11 +8,15 @@
   <a href="{{login_url}}">Login</a>
 </p>
 {% else %}
-<h2>You are AUTHENTICATED ☺</h2>
-<p>Here are the information retrieved from the OP:
-</p>
-<pre>{{user_info|dump(2)}}
-</pre>
+<div style="background: #59f5ff">
+  <h2>You are AUTHENTICATED ☺</h2>
+  <p>Here are the information retrieved from the OP:
+  </p>
+  <pre>{{user_info|dump(2)}}
+  </pre>
+</div>
+
+<hr/>
 <p>
   <a href="{{logout_url}}">Logout</a>
 </p>
