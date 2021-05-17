@@ -31,7 +31,7 @@
     "morgan": "1.10.0",
     "nunjucks": "3.2.1",
     "on-finished": "2.3.0",
-    "openid-client": "4.4.0",
+    "openid-client": "4.7.3",
     "toml": "3.0.0",
     "tracer": "1.1.1",
     "yargs-parser": "18.1.3"
