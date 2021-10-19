@@ -11,6 +11,7 @@ const nunjucks = require('nunjucks')
 
 const config = require('./lib/config')
 const logger = require('./lib/logger')
+const oidc = require('./lib/oidc')
 
 const app = module.exports = express()
 
@@ -81,6 +82,8 @@ app.use(cookieSession({
 config.nunjucks_env = nunjucks.configure(path.join(__dirname, 'view'), {express: app})
 
 require('./routes')
+
+app.use(oidc.handleError)
 
 // Global error handler
 app.use((err, req, res, next) => {

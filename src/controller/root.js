@@ -1,5 +1,6 @@
 'use strict'
 
+const {TokenSet} = require('openid-client')
 const {OPError} = require('openid-client').errors
 
 const config = require('../lib/config')
@@ -16,19 +17,18 @@ async function renderPage(req, res, next) {
     }
 
     try {
-        const client = await oidc.getClient(req)
-        const token_set = client.getTokenSet()
+        const client = await oidc.getOpenidClient()
 
-        if (token_set && !token_set.expired()) {
-            logger.debug(client.getTokenExpirationDetails())
+        const token_set = req.session.token_set
+        if (token_set && !new TokenSet(req.session.token_set).expired()) {
 
             // User may still be LOGGED, but their tokens may still be invalid
             // from the OP (revoked, user logged-out from OP).
             try {
-                const access_token_verify = await client.introspect(token_set.access_token)
-                logger.trace('access_token_verify:', access_token_verify)
+                const introspection = await client.introspect(token_set.access_token)
+                logger.trace('introspection:', introspection)
 
-                const user_info = await client.userinfo()
+                const user_info = await client.userinfo(token_set.access_token)
                 data.user_info = user_info
 
                 try {
@@ -58,8 +58,7 @@ async function renderPage(req, res, next) {
 
         res.render('root.njk', data)
     } catch (err) {
-        logger.error(err)
-        res.sendStatus(500)
+        next(err)
     }
 }
 
