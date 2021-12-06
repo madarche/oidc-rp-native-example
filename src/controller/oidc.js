@@ -69,14 +69,14 @@ async function loggedIn(req, res, next) {
 
 async function logOut(req, res, next) {
     try {
-        const openid_client = await oidc.getOpenidClient()
-
         // In case the developer/the user deleted the cookies manually.
         // It happens often when developing/debugging.
         if (!req.session.token_set) {
             res.redirect('/')
             return
         }
+
+        const openid_client = await oidc.getOpenidClient()
 
         const end_session_url = openid_client.endSessionUrl({
             id_token_hint: req.session.token_set.id_token,
@@ -98,9 +98,33 @@ function loggedOut(req, res, next) {
     res.redirect('/')
 }
 
+async function refresh(req, res, next) {
+    try {
+        // In case the developer/the user deleted the cookies manually.
+        // It happens often when developing/debugging.
+        if (!req.session.token_set) {
+            res.redirect('/')
+            return
+        }
+
+        const client = await oidc.getOpenidClient()
+
+        const token_set = await client.refresh(req.session.token_set.refresh_token)
+        logger.trace('token_set:', token_set)
+
+        req.session.token_set = token_set
+
+        res.redirect('/')
+    } catch (err) {
+        logger.error(err)
+        res.sendStatus(500)
+    }
+}
+
 module.exports = {
     logIn,
     loggedIn,
     logOut,
     loggedOut,
+    refresh,
 }

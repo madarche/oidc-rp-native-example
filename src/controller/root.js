@@ -14,6 +14,7 @@ async function renderPage(req, res, next) {
         config_info_not_for_prod: oidc.getConfigInfo(),
         login_url: '/login',
         logout_url: '/logout',
+        refresh_url: '/refresh',
     }
 
     try {
