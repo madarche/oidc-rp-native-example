@@ -116,8 +116,7 @@ async function refresh(req, res, next) {
 
         res.redirect('/')
     } catch (err) {
-        logger.error(err)
-        res.sendStatus(500)
+        next(err)
     }
 }
 
