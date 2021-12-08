@@ -69,7 +69,9 @@ async function getOpenidClient() {
  */
 function handleError(err, req, res, next) {
     if (err instanceof OPError) {
-        res.send(err.error_description)
+        // If not passing err.toString(), it would be equivalent to
+        // "res.json(err)".
+        res.send(err.toString())
     } else {
         next(err)
     }
