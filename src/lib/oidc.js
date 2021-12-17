@@ -7,9 +7,6 @@ const config = require('./config')
 const logger = require('./logger')
 
 custom.setHttpOptionsDefaults({
-    // For requestResource: Making erros be thrown for non-2xx status codes
-    // responses.
-    throwHttpErrors: true,
     // Increasing the 3500 ms default to 10 seconds for some connexions that may
     // take longer.
     timeout: 10000,
